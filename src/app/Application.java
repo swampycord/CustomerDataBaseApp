@@ -1,8 +1,8 @@
 package app;
 
-import app.views.Start;
+import app.views.start.Start;
 
-public class App {
+public class Application {
     public static void main(String[] args) {
         new Start();
     }

@@ -1,8 +1,7 @@
-package app.views;
+package app.views.menu;
 
 import app.service.CustomerService;
 import app.service.entities.CustomerEntity;
-import app.tools.AppConsole;
 import app.tools.CustomThread;
 
 import java.time.LocalDate;
@@ -37,9 +36,9 @@ public class Menu {
         if (!customerService.getCustomers().isEmpty()) {
             for (CustomerEntity customer : customerService.getCustomers()) {
                 System.out.println("Firstname\t\t: " + customer.getFirstName());
-                System.out.println("Lastname\t\t: " +customer.getLastName());
-                System.out.println("Email\t\t\t: " +customer.getEmail());
-                System.out.println("Address\t\t\t: " +customer.getAddress());
+                System.out.println("Lastname\t\t: " + customer.getLastName());
+                System.out.println("Email\t\t\t: " + customer.getEmail());
+                System.out.println("Address\t\t\t: " + customer.getAddress());
                 System.out.println("Date of birth\t: " + customer.getDob().format(DateTimeFormatter.ofPattern("dd-MMM-yyyy")));
                 System.out.println("\b");
             }
@@ -66,19 +65,19 @@ public class Menu {
 
         Scanner input = new Scanner(System.in);
 
-        System.out.print("Firstname\t\t: "  );
+        System.out.print("Firstname\t\t: ");
         String firstName = input.nextLine();
 
-        System.out.print("Lastname\t\t: "  );
+        System.out.print("Lastname\t\t: ");
         String lastName = input.nextLine();
 
-        System.out.print("Email\t\t\t: "  );
+        System.out.print("Email\t\t\t: ");
         String email = input.nextLine();
 
-        System.out.print("Address\t\t\t: "  );
+        System.out.print("Address\t\t\t: ");
         String address = input.nextLine();
 
-        System.out.print("Date of Birth\t: "  );
+        System.out.print("Date of Birth\t: ");
         String dob = input.nextLine();
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 

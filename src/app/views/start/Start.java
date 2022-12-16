@@ -1,8 +1,10 @@
-package app.views;
+package app.views.start;
 
 import app.service.entities.UserService;
 import app.tools.CustomThread;
+import app.views.menu.Menu;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import static app.currentdata.CurrentUser.credentialsValidated;
@@ -11,7 +13,9 @@ import static app.currentdata.CurrentUser.getCurrentUser;
 public class Start {
 
     private final UserService userService = new UserService();
+    private final Scanner input = new Scanner(System.in);
     private Scanner passwordInput;
+    private boolean wentToCatch = false;
 
     public Start() {
         loginView();
@@ -19,29 +23,38 @@ public class Start {
 
     private void loginView() {
 
-        Scanner input = new Scanner(System.in);
 
         System.out.println("Option:");
         System.out.println("\tPress 1 -> Sign in");
         System.out.println("\tPress 2 -> Register");
         System.out.print("Enter\t: ");
 
-        int option = input.nextInt();
+        do {
+            try {
+                int option = input.nextInt();
+                if (option == 1) signIn();
+                else if (option == 2) register();
+                else throw new InputMismatchException();
+            } catch (InputMismatchException e) {
+                tryAgain();
+            }
+        } while (wentToCatch);
+    }
 
-        if (option == 1) {
-            signIn();
-        } else if (option == 2) {
-            register();
-        }
+    private void tryAgain() {
+        wentToCatch = true;
+        System.err.print("Please enter a valid number(1 or 2): ");
+        input.next();
     }
 
     private void signIn() {
+        wentToCatch = false;
         System.out.println("Sign in");
         Scanner input = new Scanner(System.in);
         usernameConfig(input);
         passwordConfig(input);
         if (!credentialsValidated()) {
-        validationConfig();
+            validationConfig();
         }
         Menu menu = new Menu();
 
@@ -51,6 +64,7 @@ public class Start {
     }
 
     private void register() {
+        wentToCatch = false;
         register("");
     }
 
