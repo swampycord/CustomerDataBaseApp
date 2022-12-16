@@ -140,11 +140,7 @@ public class Start {
     }
 
     private void validationConfig() {
-//        if (credentialsValidated()) {
-//            AppConsole.clear();
-//        } else {
         System.err.println("Invalid password");
         passwordConfig(passwordInput);
-//        }
     }
 }
